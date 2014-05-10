@@ -1,12 +1,29 @@
 require 'sinatra/base'
+require 'sinatra/activerecord'
 require 'slim'
-require './config/environments'
-require 'active_support/core_ext'
-require 'padrino-helpers'
+require 'pg'
 
 class Tracker < Sinatra::Base
-  register Padrino::Helpers
   use ActiveRecord::ConnectionAdapters::ConnectionManagement
+
+  configure :production do
+    set :db, URI.parse('postgres://localhost/membership_production')
+  end
+
+  configure :development do
+    set :db, URI.parse('postgres://localhost/membership_development')
+  end
+
+  configure do
+    ActiveRecord::Base.establish_connection(
+        :adapter => settings.db.scheme == 'postgres' ? 'postgresql' : settings.db.scheme,
+        :host     => settings.db.host,
+        :username => settings.db.user,
+        :password => settings.db.password,
+        :database => settings.db.path[1..-1],
+        :encoding => 'utf8'
+    )
+  end
 
   get '/' do
     slim :index
