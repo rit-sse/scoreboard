@@ -2,9 +2,53 @@ doctype html
 html
   head
     title SSE Membership Tracker
-    link rel="stylesheet" href="stylsheets/application.css" type="text/css"
-
+    link rel="stylesheet" href="stylesheets/application.css" type="text/css"
+    script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"
+    script type="text/javascript" src="javascripts/bootstrap/dropdown.js"
   body
-    .container
+    #outer-container
+      #top_nav_wrapper
+        #top_nav
+          a href="https://sse.se.rit.edu/"
+            img#logo alt="Society of Software Engineers" src="/images/logo-white.png"
+          #nav_links
+            a href="https://sse.se.rit.edu/blog/" BLOG
+            a href="https://sse.se.rit.edu/events/" EVENTS
+            a href="https://sse.se.rit.edu/committees/projects" PROJECTS
+            ul
+              li.dropdown#committees-menu
+                a.dropdown-toggle href="#" data-toggle="dropdown"
+                  | ABOUT
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a href="/about" About the SSE
+                  li
+                    a href="/about/officers" Officers
+                  li.divider
+                  li
+                    a href="/constitution" Constitution
+                  li
+                    a href="/primary-officers-policy" Primary Officers Policy
+                  li.divider
+                  li
+                    a href="/committees/mentoring" Mentoring
+                  li
+                    a href="/committees/fundraising" Fundraising
+                  li
+                    a href="/committees/intramurals" Intramurals
+                  li
+                    a href="/committees/pr" Public Relations
+                  li
+                    a href="/committees/events" Events
+                  li
+                    a href="/committees/vise" ViSE
+                  li
+                    a href="/committees/talks" Talks
+                  li.divider
+                  li
+                    a href="/about/sponsors" Sponsors
+                  li
+                    a href="/social" Follow The SSE
       == yield
     #footer All content is Copyright &copy; 2014 Society of Software Engineers.
