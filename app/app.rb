@@ -1,5 +1,6 @@
 module MembershipTracker
   class App < Padrino::Application
+    register CompassInitializer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     enable :sessions
 
