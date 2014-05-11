@@ -10,6 +10,7 @@ module MembershipTracker
 
     layout :application
 
+
     before do
       @admin = !session[:user].nil? || settings.environment == :development
     end
@@ -21,5 +22,16 @@ module MembershipTracker
     after do
       ActiveRecord::Base.connection.close
     end
+
+    def self.authorize(authorized)
+      condition do
+        halt 403, 'Not authorized' unless @admin
+      end if authorized
+    end
+
+    error 403 do
+      render('errors/403')
+    end
+
   end
 end

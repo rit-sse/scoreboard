@@ -1,10 +1,6 @@
-MembershipTracker::App.controllers :committees do
+MembershipTracker::App.controllers :committees, conditions: {authorize: true} do
 
-  # define_method  :committee_params do
-  #   params.require(:committee).permit(:name)
-  # end
-
-  get :show, map: '/committees/new' do
+  get :new, map: '/committees/new' do
     @committee = Committee.new
     render 'committees/new'
   end
@@ -19,5 +15,4 @@ MembershipTracker::App.controllers :committees do
       render 'committees/new'
     end
   end
-
 end
