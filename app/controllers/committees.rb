@@ -1,8 +1,8 @@
 MembershipTracker::App.controllers :committees do
 
-  def committee_params
-    params.require(:committee).permit(:name)
-  end
+  # define_method  :committee_params do
+  #   params.require(:committee).permit(:name)
+  # end
 
   get :show, map: '/committees/new' do
     @committee = Committee.new
@@ -10,11 +10,11 @@ MembershipTracker::App.controllers :committees do
   end
 
   post :create, map: '/committees' do
-    @committee = Committee.new(committee_params)
+    @committee = Committee.new(params[:committee])
 
-    if @committees.save
+    if @committee.save
       flash[:notice] = 'Committee was successfully created'
-      redirect_to 'index/home'
+      redirect_to '/'
     else
       render 'committees/new'
     end

@@ -14,10 +14,13 @@ html
           small SSE Membership Tracker
         - if @admin
           ul.list-inline.text-right.bottom-align
-            li Create New Committee
+            li
+              a href='/committees/new' Create New Committee
             li Create New Semester
             li Add Member
             li Membership List
-      = flash_tag :notice
+      - if flash.size != 0
+        .alert.alert-success
+          = flash_tag :notice
       == yield
 
