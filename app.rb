@@ -25,6 +25,10 @@ class Tracker < Sinatra::Base
     )
   end
 
+  before do
+    @admin = !session[:user].nil? || settings.environment == :development
+  end
+
   get '/' do
     slim :index
   end
@@ -32,5 +36,6 @@ class Tracker < Sinatra::Base
   after do
     ActiveRecord::Base.connection.close
   end
+
   run! if app_file == $0
 end

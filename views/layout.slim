@@ -2,55 +2,68 @@ doctype html
 html
   head
     title SSE Membership Tracker
-    link rel="stylesheet" href="stylesheets/application.css" type="text/css"
-    script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"
-    script type="text/javascript" src="javascripts/bootstrap/dropdown.js"
+    link rel='stylesheet' href='stylesheets/application.css' type='text/css'
+    script type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js'
+    script type='text/javascript' src='javascripts/bootstrap/dropdown.js'
   body
     #outer-container
       #top_nav_wrapper
         #top_nav
-          a href="https://sse.se.rit.edu/"
-            img#logo alt="Society of Software Engineers" src="/images/logo-white.png"
+          a href='https://sse.se.rit.edu/'
+            img#logo alt='Society of Software Engineers' src='/images/logo-white.png'
           #nav_links
-            a href="https://sse.se.rit.edu/blog/" BLOG
-            a href="https://sse.se.rit.edu/events/" EVENTS
-            a href="https://sse.se.rit.edu/committees/projects" PROJECTS
+            a href='https://sse.se.rit.edu/blog/' BLOG
+            a href='https://sse.se.rit.edu/events/' EVENTS
+            a href='https://sse.se.rit.edu/committees/projects' PROJECTS
             ul
               li.dropdown#committees-menu
-                a.dropdown-toggle href="#" data-toggle="dropdown"
+                a.dropdown-toggle href='#' data-toggle='dropdown'
                   | ABOUT
                   b.caret
                 ul.dropdown-menu
                   li
-                    a href="https://sse.se.rit.edu/about" About the SSE
+                    a href='https://sse.se.rit.edu/about' About the SSE
                   li
-                    a href="https://sse.se.rit.edu/about/officers" Officers
+                    a href='https://sse.se.rit.edu/about/officers' Officers
                   li.divider
                   li
-                    a href="https://sse.se.rit.edu/constitution" Constitution
+                    a href='https://sse.se.rit.edu/constitution' Constitution
                   li
-                    a href="https://sse.se.rit.edu/primary-officers-policy" Primary Officers Policy
+                    a href='https://sse.se.rit.edu/primary-officers-policy' Primary Officers Policy
                   li.divider
                   li
-                    a href="https://sse.se.rit.edu/committees/mentoring" Mentoring
+                    a href='https://sse.se.rit.edu/committees/mentoring' Mentoring
                   li
-                    a href="https://sse.se.rit.edu/committees/fundraising" Fundraising
+                    a href='https://sse.se.rit.edu/committees/fundraising' Fundraising
                   li
-                    a href="https://sse.se.rit.edu/committees/intramurals" Intramurals
+                    a href='https://sse.se.rit.edu/committees/intramurals' Intramurals
                   li
-                    a href="https://sse.se.rit.edu/committees/pr" Public Relations
+                    a href='https://sse.se.rit.edu/committees/pr' Public Relations
                   li
-                    a href="https://sse.se.rit.edu/committees/events" Events
+                    a href='https://sse.se.rit.edu/committees/events' Events
                   li
-                    a href="https://sse.se.rit.edu/committees/vise" ViSE
+                    a href='https://sse.se.rit.edu/committees/vise' ViSE
                   li
-                    a href="https://sse.se.rit.edu/committees/talks" Talks
+                    a href='https://sse.se.rit.edu/committees/talks' Talks
                   li.divider
                   li
-                    a href="https://sse.se.rit.edu/about/sponsors" Sponsors
+                    a href='https://sse.se.rit.edu/about/sponsors' Sponsors
                   li
-                    a href="https://sse.se.rit.edu/social" Follow The SSE
+                    a href='https://sse.se.rit.edu/social' Follow The SSE
                   li
-                    a href="https://sse.se.rit.edu/membership" Membership Tracker
+                    a href='https://sse.se.rit.edu/membership' Membership Tracker
+            - if @admin
+              ul
+                li.dropdown#comittees-menu
+                  a.dropdown-toggle href='#' data-toggle='dropdown'
+                    | ADMIN
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a href='/add_membership' Add Membership
+                    li
+                      a href='/add_semester' Add Semester
+                    li
+                      a href='/membership_list' Membership List
       == yield
     #footer All content is Copyright &copy; 2014 Society of Software Engineers.
