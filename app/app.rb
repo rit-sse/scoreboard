@@ -1,15 +1,19 @@
 module MembershipTracker
   class App < Padrino::Application
     register CompassInitializer
+    register Padrino::Rendering
+    register Padrino::Helpers
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     enable :sessions
+
+    layout :application
 
     before do
       @admin = !session[:user].nil? || settings.environment == :development
     end
 
     get :index do
-      slim :index
+      render 'home/index'
     end
 
     after do
