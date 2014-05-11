@@ -2,16 +2,22 @@ doctype html
 html
   head
     title Scoreboard
-    link rel='stylesheet' href='stylesheets/application.css' type='text/css'
+    link rel='stylesheet' href='/stylesheets/application.css' type='text/css'
     script type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js'
-    script type='text/javascript' src='javascripts/bootstrap/dropdown.js'
+    script type='text/javascript' src='/javascripts/bootstrap/dropdown.js'
   body
-
     .container
-      .page-header
-        h1
-          ' Scoreboard
+      #header.page-header.flex
+        h1.text-left
+          a href='/' class='no-decoration'
+            'Scoreboard
           small SSE Membership Tracker
-
-
+        - if @admin
+          ul.list-inline.text-right.bottom-align
+            li Create New Committee
+            li Create New Semester
+            li Add Member
+            li Membership List
+      = flash_tag :notice
       == yield
+

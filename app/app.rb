@@ -4,7 +4,9 @@ module MembershipTracker
     register Padrino::Rendering
     register Padrino::Helpers
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
+
     enable :sessions
+    enable :flash
 
     layout :application
 

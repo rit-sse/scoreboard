@@ -1,0 +1,8 @@
+- if @member.nil?
+  h1
+    ' No Such Member
+    = params[:dce]
+- else
+  h1
+    ' Membership Info for
+    = @member.full_name
