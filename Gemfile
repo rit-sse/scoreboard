@@ -7,6 +7,6 @@ gem "compass", "~>0.12.6"
 gem "rake"
 gem "slim"
 gem "pg"
-gem "activerecord"
+gem "activerecord", '~>4.1.0'
 gem "sinatra-activerecord"
 gem "padrino"
