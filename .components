@@ -1,0 +1,9 @@
+---
+:orm: activerecord
+:test: rspec
+:mock: none
+:script: jquery
+:renderer: slim
+:stylesheet: scss
+:namespace: MembershipTracker
+:migration_format: number
