@@ -1,7 +1,8 @@
 Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
+
   get :index, map: '/memberships' do
     @semester = Semester.current_semester
-    @memberships = @semester.memberships
+    @memberships = apply_scopes(:memberships, @semester.memberships, params)
     render 'memberships/index'
   end
 

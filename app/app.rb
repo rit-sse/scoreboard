@@ -3,7 +3,7 @@ module Scoreboard
     register CompassInitializer
     register Padrino::Rendering
     register Padrino::Helpers
-    register Sinatra::HasScope
+    include Sinatra::HasScope
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
     enable :sessions
@@ -13,6 +13,7 @@ module Scoreboard
 
 
     before do
+      has_scope :memberships, :unique, type: :boolean
       @admin = !session[:user].nil? || settings.environment == :development
     end
 
