@@ -1,4 +1,4 @@
-module MembershipTracker
+module Scoreboard
   class App < Padrino::Application
     register CompassInitializer
     register Padrino::Rendering

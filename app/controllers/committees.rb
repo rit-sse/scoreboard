@@ -1,6 +1,5 @@
-MembershipTracker::App.controllers :committees, conditions: {authorize: true} do
+Scoreboard::App.controllers :committees, conditions: {authorize: true} do
   get :new, map: '/committees/new' do
-    @committee = Committee.new
     render 'committees/new'
   end
 

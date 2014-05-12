@@ -1,4 +1,4 @@
-MembershipTracker::App.controllers :members do
+Scoreboard::App.controllers :members do
 
   get :show, map: '/members/:dce' do
     @member = Member.find_by_dce(params[:dce])

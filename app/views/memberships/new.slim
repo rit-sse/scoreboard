@@ -1,0 +1,26 @@
+.row
+  .col-md-6.col-md-offset-3
+    = form_for :membership, '/memberships' do |f|
+      = f.error_messages
+      .row
+        .col-xs-3
+          .form-group
+            = f.label :dce, caption: 'DCE'
+            = f.text_field :dce, class: 'form-control', name: 'member[dce]', id: 'member_dce'
+        .col-xs-4
+          .form-group
+            = f.label :first_name, caption: 'First Name'
+            = f.text_field :first_name, class: 'form-control', name: 'member[first_name]', id: 'member_first_name'
+        .col-xs-4
+          .form-group
+            = f.label :last_name, caption: 'Last Name'
+            = f.text_field :last_name, class: 'form-control', name: 'member[last_name]', id: 'member_last_name'
+      .form-group
+        - options = Committee.all.map{|committee| [committee.name, committee.id] }
+        = f.label :committee, caption: 'Committee'
+        = f.select :committee, options: options, class: 'form-control'
+      .form-group
+        = f.label :reason, caption: 'Reason'
+        = f.text_field :reason, class: 'form-control'
+      .form-group
+        = f.submit 'Create', class: 'btn btn-primary'

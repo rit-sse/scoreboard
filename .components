@@ -5,5 +5,5 @@
 :script: jquery
 :renderer: slim
 :stylesheet: scss
-:namespace: MembershipTracker
+:namespace: Scoreboard
 :migration_format: number

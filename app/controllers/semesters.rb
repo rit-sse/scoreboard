@@ -1,7 +1,6 @@
-MembershipTracker::App.controllers :semesters, conditions: {authorize: true} do
+Scoreboard::App.controllers :semesters, conditions: {authorize: true} do
 
   get :new, map: '/semesters/new' do
-    @semester = Semester.new
     render 'semesters/new'
   end
 
@@ -21,7 +20,7 @@ MembershipTracker::App.controllers :semesters, conditions: {authorize: true} do
   get :show, map: '/semesters/:name' do
     @semester = Semester.find_by_name(params[:name])
     @memberships = @semester.memberships
-    render 'semesters/show'
+    render 'memberships/index'
   end
 
 end
