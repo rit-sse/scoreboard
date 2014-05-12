@@ -1,5 +1,7 @@
 Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
   get :index, map: '/memberships' do
+    @semester = Semester.current_semester
+    @memberships = @semester.memberships
     render 'memberships/index'
   end
 

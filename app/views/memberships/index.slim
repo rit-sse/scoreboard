@@ -1,0 +1,29 @@
+h2.text-center
+  ' Memberships for
+  = @semester.name
+table.table.table-striped.sortable
+  thead
+    tr
+      th #
+      th data-defaultsort='asc' Date
+      th DCE
+      th First Name
+      th Last Name
+      th Committee
+      th Reason
+  tbody
+    - @memberships.each_with_index do |membership, index|
+      tr
+        td = index+1
+        td data-date-format='MM/DD/YYYY' = membership.created_at.strftime("%m/%d/%Y")
+        td = membership.member.dce
+        td = membership.member.first_name
+        td = membership.member.last_name
+        td = membership.committee.name
+        td = membership.reason
+
+h3.text-center Semesters
+ul.list-inline.text-center
+  - Semester.all.each do |semester|
+    li
+      =link_to semester.name, url_for(:semesters, :show, name: semester.name)

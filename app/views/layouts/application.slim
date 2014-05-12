@@ -4,6 +4,7 @@ html
     title Scoreboard
     link rel='stylesheet' href='/stylesheets/application.css' type='text/css'
     link rel='stylesheet' href='/stylesheets/bootstrap-datetimepicker.min.css' type='text/css'
+    link rel='stylesheet' href='/stylesheets/bootstrap-sortable.css' type='text/css'
     link rel='stylesheet' href='/stylesheets/font-awesome.min.css' type='text/css'
     script type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js'
     script type='text/javascript' src='/javascripts/bootstrap/dropdown.js'
@@ -11,6 +12,7 @@ html
     script type='text/javascript' src='/javascripts/bootstrap/collapse.js'
     script type='text/javascript' src='/javascripts/moment.min.js'
     script type='text/javascript' src='/javascripts/bootstrap-datetimepicker.min.js'
+    script type='text/javascript' src='/javascripts/bootstrap-sortable.js'
 
   body
     .container
@@ -22,14 +24,14 @@ html
         - if @admin
           ul.list-inline.text-right.bottom-align
             li
-              a href='/committees/new' Create New Committee
+              a href='/committees/new' Add Committee
             li
-              a href='/semesters/new' Create New Semester
+              a href='/semesters/new' Add Semester
             li
               a href='/memberships/new' Add Membership
-            li Membership List
+            li
+              a href='/memberships' Membership List
       - if flash.size != 0
         .alert.alert-success
           = flash_tag :notice
       == yield
-

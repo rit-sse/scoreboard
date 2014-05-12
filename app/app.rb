@@ -3,6 +3,7 @@ module Scoreboard
     register CompassInitializer
     register Padrino::Rendering
     register Padrino::Helpers
+    register Sinatra::HasScope
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
     enable :sessions

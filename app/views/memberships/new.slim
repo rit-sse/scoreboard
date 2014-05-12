@@ -3,7 +3,7 @@
     = form_for :membership, '/memberships' do |f|
       = f.error_messages
       .row
-        .col-xs-3
+        .col-xs-4
           .form-group
             = f.label :dce, caption: 'DCE'
             = f.text_field :dce, class: 'form-control', name: 'member[dce]', id: 'member_dce'
