@@ -3,8 +3,15 @@ html
   head
     title Scoreboard
     link rel='stylesheet' href='/stylesheets/application.css' type='text/css'
+    link rel='stylesheet' href='/stylesheets/bootstrap-datetimepicker.min.css' type='text/css'
+    link rel='stylesheet' href='/stylesheets/font-awesome.min.css' type='text/css'
     script type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js'
     script type='text/javascript' src='/javascripts/bootstrap/dropdown.js'
+    script type='text/javascript' src='/javascripts/bootstrap/transition.js'
+    script type='text/javascript' src='/javascripts/bootstrap/collapse.js'
+    script type='text/javascript' src='/javascripts/moment.min.js'
+    script type='text/javascript' src='/javascripts/bootstrap-datetimepicker.min.js'
+
   body
     .container
       #header.page-header.flex
@@ -16,7 +23,8 @@ html
           ul.list-inline.text-right.bottom-align
             li
               a href='/committees/new' Create New Committee
-            li Create New Semester
+            li
+              a href='/semesters/new' Create New Semester
             li Add Member
             li Membership List
       - if flash.size != 0
