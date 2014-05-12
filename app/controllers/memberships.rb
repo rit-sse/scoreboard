@@ -19,7 +19,7 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
 
     if @membership.save
       flash[:notice] = 'Membership was successfully created'
-      redirect_to 'memberships'
+      redirect_to 'memberships/new'
     else
       render 'memberships/new'
     end

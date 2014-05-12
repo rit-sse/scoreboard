@@ -1,3 +1,3 @@
-# Tracker
+# Scoreboard
 
-SSE Membership tracker built using sinatra.
+SSE Membership Tracker built using Padrino.
