@@ -8,6 +8,10 @@ class Member < ActiveRecord::Base
   end
 
   def memberships_for(semester)
-    member.membership.where(semester_id: semester.id)
+    memberships.where(semester_id: semester.id)
+  end
+
+  def self.high_score(semester)
+    all.sort{|a,b| b.memberships_for(semester) <=> a.memberships_for(semester)}.first(10)
   end
 end

@@ -17,6 +17,8 @@ module Scoreboard
     end
 
     get :index do
+      @semester = Semester.current_semester
+      @members = Member.high_score(@semester)
       render 'home/index'
     end
 
