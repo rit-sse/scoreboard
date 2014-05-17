@@ -17,7 +17,7 @@ module Scoreboard
 
     get :index do
       @semester = Semester.current_semester
-      @members = Member.high_score(@semester)
+      @members = Member.high_score(@semester) unless @semester.nil?
       render 'home/index'
     end
 

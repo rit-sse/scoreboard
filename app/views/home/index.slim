@@ -2,10 +2,13 @@ h2.text-center  High Scores
 .row
   .col-md-6.col-md-offset-3
     table.table.table-striped.table-bordered
-      tr
-        th Member
-        th Score
-      - @members.each do |member|
+      - if @members.nil?
+        | We aren't in the middle of a semester
+      - else
         tr
-          td = member.full_name
-          td = member.memberships_for(@semester).count
+          th Member
+          th Score
+        - @members.each do |member|
+          tr
+            td = member.full_name
+            td = member.memberships_for(@semester).count

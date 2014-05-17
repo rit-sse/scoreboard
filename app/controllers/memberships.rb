@@ -2,8 +2,10 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
 
   get :index, map: '/memberships' do
     @semester = Semester.current_semester
-    @memberships = @semester.memberships
-    @memberships = @memberships.unique if params[:unique]
+    unless @semester.nil?
+      @memberships = @semester.memberships
+      @memberships = @memberships.unique if params[:unique]
+    end
     render 'memberships/index'
   end
 

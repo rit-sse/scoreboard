@@ -19,6 +19,7 @@ Scoreboard::App.controllers :semesters, conditions: {authorize: true} do
 
   get :show, map: '/semesters/:name' do
     @semester = Semester.find_by_name(params[:name])
+    halt 404 if @sememster.nil?
     @memberships = @semester.memberships
     @memberships = @memberships.unique if params[:unique]
     render 'memberships/index'
