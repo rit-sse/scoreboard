@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class Member < ActiveRecord::Base
   has_many :memberships
 
@@ -13,5 +15,11 @@ class Member < ActiveRecord::Base
 
   def self.high_score(semester)
     all.sort{|a,b| b.memberships_for(semester).count <=> a.memberships_for(semester).count}.first(10)
+  end
+
+  def gravatar
+    email_address = "#{dce}@rit.edu".downcase
+    hash = Digest::MD5.hexdigest(email_address)
+    "http://www.gravatar.com/avatar/#{hash}"
   end
 end

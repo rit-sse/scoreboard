@@ -10,5 +10,10 @@ h2.text-center  High Scores
           th Score
         - @members.each do |member|
           tr
-            td = member.full_name
+            td
+              span.inline-block.vert-middle
+                img src="#{member.gravatar}" width='25px'
+              span.inline-block.vert-middle
+                | &nbsp;
+                = member.full_name
             td = member.memberships_for(@semester).count
