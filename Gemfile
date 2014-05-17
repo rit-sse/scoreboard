@@ -10,7 +10,7 @@ gem 'rake'
 # Component requirements
 gem 'sass'
 gem 'slim'
-gem 'activerecord', '~>4.1.0', :require => 'active_record'
+gem 'activerecord', :require => 'active_record'
 gem 'pg'
 
 # Test requirements
