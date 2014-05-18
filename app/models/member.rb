@@ -20,6 +20,6 @@ class Member < ActiveRecord::Base
   def gravatar
     email_address = "#{dce}@rit.edu".downcase
     hash = Digest::MD5.hexdigest(email_address)
-    "http://www.gravatar.com/avatar/#{hash}"
+    "http://www.gravatar.com/avatar/#{hash}?d=mm&s=25"
   end
 end
