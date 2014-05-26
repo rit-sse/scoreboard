@@ -37,6 +37,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.3)
     moneta (0.7.20)
+    net-ldap (0.3.1)
     padrino (0.12.1)
       padrino-admin (= 0.12.1)
       padrino-cache (= 0.12.1)
@@ -120,6 +121,7 @@ DEPENDENCIES
   activerecord
   bootstrap-sass (~> 3.1.0)
   compass (~> 0.12.6)
+  net-ldap
   padrino (= 0.12.1)
   pg
   rack-test

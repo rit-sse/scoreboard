@@ -22,3 +22,5 @@ gem 'padrino', '0.12.1'
 gem 'smarter_csv'
 
 gem 'unicorn'
+
+gem 'net-ldap'
