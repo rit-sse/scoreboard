@@ -1,5 +1,5 @@
 - if @semester.nil?
-  | No current semester
+  p.text-center No current semester
 - else
   h2.text-center
     ' Memberships for
@@ -29,4 +29,4 @@ h3.text-center Semesters
 ul.list-inline.text-center
   - Semester.all.each do |semester|
     li
-      =link_to semester.name, url_for(:semesters, :show, name: semester.name)
+      =link_to semester.name, "/scoreboard/semesters/#{semester.name}"

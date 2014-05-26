@@ -20,8 +20,8 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
     @membership.semester = Semester.current_semester
 
     if @membership.save
-      flash[:notice] = 'Membership was successfully created'
-      redirect_to 'memberships/new'
+      flash[:success] = 'Membership was successfully created'
+      redirect_to '/scoreboard/memberships/new'
     else
       render 'memberships/new'
     end

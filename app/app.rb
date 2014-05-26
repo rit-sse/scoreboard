@@ -10,24 +10,15 @@ module Scoreboard
 
     layout :application
 
-
-    before do
-      @admin = !session[:user].nil? || settings.environment == :development
-    end
-
     get :index do
       @semester = Semester.current_semester
       @members = Member.high_score(@semester) unless @semester.nil?
       render 'home/index'
     end
 
-    after do
-      ActiveRecord::Base.connection.close
-    end
-
     def self.authorize(authorized)
       condition do
-        halt 403, 'Not authorized' unless @admin
+        halt 403, 'Not authorized' unless signed_in?
       end if authorized
     end
 
@@ -43,5 +34,8 @@ module Scoreboard
       render('errors/500')
     end
 
+    after do
+      ActiveRecord::Base.connection.close
+    end
   end
 end

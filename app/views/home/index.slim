@@ -3,7 +3,7 @@ h2.text-center  High Scores
   .col-md-6.col-md-offset-3
     table.table.table-striped.table-bordered
       - if @members.nil?
-        | We aren't in the middle of a semester
+        p.text-center We aren't in the middle of a semester.
       - else
         tr
           th Member

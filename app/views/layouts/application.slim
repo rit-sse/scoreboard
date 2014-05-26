@@ -6,7 +6,7 @@ html
     link rel='stylesheet' href='/scoreboard/stylesheets/bootstrap-datetimepicker.min.css' type='text/css'
     link rel='stylesheet' href='/scoreboard/stylesheets/bootstrap-sortable.css' type='text/css'
     link rel='stylesheet' href='/scoreboard/stylesheets/font-awesome.min.css' type='text/css'
-    script type='text/javascript' src='/scoreboard//code.jquery.com/jquery-2.1.1.min.js'
+    script type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js'
     script type='text/javascript' src='/scoreboard/javascripts/bootstrap/dropdown.js'
     script type='text/javascript' src='/scoreboard/javascripts/bootstrap/transition.js'
     script type='text/javascript' src='/scoreboard/javascripts/bootstrap/collapse.js'
@@ -18,20 +18,36 @@ html
     .container
       #header.page-header.flex
         h1.text-left
-          a href='/' class='no-decoration'
+          a href='/scoreboard' class='no-decoration'
             'Scoreboard
           small SSE Membership Tracker
-        - if @admin
+        - if signed_in?
           ul.list-inline.text-right.bottom-align
             li
-              a href='/committees/new' Add Committee
+              a href='/scoreboard/committees/new' Add Committee
             li
-              a href='/semesters/new' Add Semester
+              a href='/scoreboard/semesters/new' Add Semester
             li
-              a href='/memberships/new' Add Membership
+              a href='/scoreboard/memberships/new' Add Membership
             li
-              a href='/memberships' Membership List
-      - if flash.size != 0
+              a href='/scoreboard/memberships' Membership List
+            li
+              = form_tag '/scoreboard/logout', id: 'signout'
+                = submit_tag 'Sign Out', class: 'btn btn-default'
+        - else
+
+            ul.list-inline.text-right.bottom-align
+              li
+              = form_tag '/scoreboard/auth', class: 'form-inline'
+                = text_field_tag :username, value: params[:username], class: "input-sm", placeholder: "Username"
+
+                = password_field_tag :password, value: params[:password], class: "input-sm", placeholder: "Password", style: 'margin-left: 10px'
+
+                = submit_tag 'Sign In', class: 'btn btn-default', style: 'margin-left: 10px'
+      - if flash.key?(:success)
         .alert.alert-success
-          = flash_tag :notice
+          = flash_tag :success
+      - if flash.key?(:error)
+        .alert.alert-error
+          = flash_tag :error
       == yield

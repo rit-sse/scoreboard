@@ -10,8 +10,8 @@ Scoreboard::App.controllers :semesters, conditions: {authorize: true} do
     @semester.end_date = Date.strptime(params[:semester][:end_date], '%m/%d/%Y')
 
     if @semester.save
-      flash[:notice] = 'Semester was successfully created'
-      redirect_to '/'
+      flash[:success] = 'Semester was successfully created'
+      redirect_to '/scoreboard'
     else
       render 'semesters/new'
     end
@@ -19,7 +19,7 @@ Scoreboard::App.controllers :semesters, conditions: {authorize: true} do
 
   get :show, map: '/semesters/:name' do
     @semester = Semester.find_by_name(params[:name])
-    halt 404 if @sememster.nil?
+    halt 404 if @semester.nil?
     @memberships = @semester.memberships
     @memberships = @memberships.unique if params[:unique]
     render 'memberships/index'
