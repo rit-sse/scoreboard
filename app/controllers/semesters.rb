@@ -17,12 +17,29 @@ Scoreboard::App.controllers :semesters, conditions: {authorize: true} do
     end
   end
 
-  get :show, map: '/semesters/:name' do
+  get :show, map: '/semesters/:name', provides: [:html, :csv] do
     @semester = Semester.find_by_name(params[:name])
     halt 404 if @semester.nil?
     @memberships = @semester.memberships
     @memberships = @memberships.unique if params[:unique]
-    render 'memberships/index'
+    case content_type
+    when :html
+      render 'memberships/index'
+    when :csv
+      CSV.generate do |csv|
+        csv << ["Date", "DCE", "First Name", "Last Name", "Committee", "Reason"]
+        @memberships.each do |membership|
+          csv << [
+            membership.created_at.strftime('%m/%d/%Y'),
+            membership.member.dce,
+            membership.member.first_name,
+            membership.member.last_name,
+            membership.committee.name,
+            membership.reason
+          ]
+        end
+      end
+    end
   end
 
 end

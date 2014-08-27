@@ -1,12 +1,32 @@
+require 'csv'
 Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
 
-  get :index, map: '/memberships' do
+  get :index, map: '/memberships', provides: [:html, :csv] do
     @semester = Semester.current_semester
     unless @semester.nil?
       @memberships = @semester.memberships
       @memberships = @memberships.unique if params[:unique]
+    else
+      @memberships = []
     end
-    render 'memberships/index'
+    case content_type
+    when :html
+      render 'memberships/index'
+    when :csv
+      CSV.generate do |csv|
+        csv << ["Date", "DCE", "First Name", "Last Name", "Committee", "Reason"]
+        @memberships.each do |membership|
+          csv << [
+            membership.date.strftime('%m/%d/%Y'),
+            membership.member.dce,
+            membership.member.first_name,
+            membership.member.last_name,
+            membership.committee.name,
+            membership.reason
+          ]
+        end
+      end
+    end
   end
 
   get :new, map: '/memberships/new' do
