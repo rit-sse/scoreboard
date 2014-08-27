@@ -17,7 +17,7 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
         csv << ["Date", "DCE", "First Name", "Last Name", "Committee", "Reason"]
         @memberships.each do |membership|
           csv << [
-            membership.date.strftime('%m/%d/%Y'),
+            membership.created_at.strftime('%m/%d/%Y'),
             membership.member.dce,
             membership.member.first_name,
             membership.member.last_name,
