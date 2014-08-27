@@ -5,5 +5,4 @@ Scoreboard::App.controllers :members do
     @semesters = Semester.all
     render 'members/show'
   end
-
 end
