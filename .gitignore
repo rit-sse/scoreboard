@@ -34,3 +34,5 @@ build/
 .rvmrc
 
 .sass-cache
+
+*.sqlite3
