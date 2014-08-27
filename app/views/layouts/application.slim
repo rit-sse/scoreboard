@@ -48,6 +48,6 @@ html
         .alert.alert-success
           = flash_tag :success
       - if flash.key?(:error)
-        .alert.alert-error
+        .alert.alert-danger
           = flash_tag :error
       == yield

@@ -55,7 +55,7 @@ Scoreboard::App.controllers :auth do
 
       if error_notice
         flash[:error] = error_notice
-        render 'home/index'
+        redirect_to '/scoreboard'
       end
     end
   end
