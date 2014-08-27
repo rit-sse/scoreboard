@@ -6,9 +6,7 @@
   h1
     ' Membership Info for
     = @member.full_name
-  - if @semester.nil?
-    p.text-center Not currently in a semester
-  - else
+  - unless @semester.nil?
     table.table.table-striped.sortable
         thead
           tr
@@ -29,3 +27,10 @@
               td = membership.member.last_name
               td = membership.committee.name
               td = membership.reason
+  - else
+    p.text-center Not a member
+  h3.text-center Semesters
+  ul.list-inline.text-center
+    - Semester.all.each do |semester|
+      li
+        =link_to semester.name, "/scoreboard/members/#{@member.dce}?semester=#{semester.name}"
