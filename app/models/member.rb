@@ -14,7 +14,7 @@ class Member < ActiveRecord::Base
   end
 
   def self.high_score(semester)
-    all.sort{|a,b| b.memberships_for(semester).count <=> a.memberships_for(semester).count}.first(10)
+    all.sort{|a,b| b.memberships_for(semester).count <=> a.memberships_for(semester).count}
   end
 
   def gravatar
