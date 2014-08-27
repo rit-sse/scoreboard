@@ -11,7 +11,8 @@ gem 'rake'
 gem 'sass'
 gem 'slim'
 gem 'activerecord', :require => 'active_record'
-gem 'pg'
+gem 'pg', group: 'production'
+gem 'sqlite3'
 
 # Test requirements
 gem 'rspec', :group => 'test'
@@ -21,6 +22,7 @@ gem 'rack-test', :require => 'rack/test', :group => 'test'
 gem 'padrino', '0.12.1'
 gem 'smarter_csv'
 
-gem 'unicorn'
+gem 'unicorn', group: 'production'
+gem 'thin'
 
 gem 'net-ldap'
