@@ -1,9 +1,22 @@
 module Scoreboard
   class App < Padrino::Application
-    register CompassInitializer
+    # register CompassInitializer
     register Padrino::Rendering
     register Padrino::Helpers
+    register Sinatra::AssetPack
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    assets do
+      serve '/js',     from: 'assets/js'
+      serve '/css',    from: 'assets/css'
+      serve '/images', from: 'assets/images'
+      serve '/fonts',  from: 'assets/fonts'
+
+      js :application, '/js/application.js', [
+      ]
+
+      js_compression  :uglify
+      css_compression :sass
+    end
 
     enable :sessions
     enable :flash
