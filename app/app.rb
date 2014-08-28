@@ -7,11 +7,7 @@ module Scoreboard
     assets do
       serve '/js',     from: 'assets/js'
       serve '/css',    from: 'assets/css'
-      serve '/images', from: 'assets/images'
       serve '/fonts',  from: 'assets/fonts'
-
-      js :application, '/js/application.js', [
-      ]
 
       js_compression  :uglify
       css_compression :sass
