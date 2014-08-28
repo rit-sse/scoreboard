@@ -1,6 +1,5 @@
 module Scoreboard
   class App < Padrino::Application
-    # register CompassInitializer
     register Padrino::Rendering
     register Padrino::Helpers
     register Sinatra::AssetPack
