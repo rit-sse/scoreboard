@@ -29,6 +29,10 @@ module Scoreboard
       render 'home/index'
     end
 
+    get :templates, map: '/template/:name' do
+      render "templates/#{params[:name]}", layout: false rescue ''
+    end
+
     def self.authorize(authorized)
       condition do
         halt 403, 'Not authorized' unless signed_in?
