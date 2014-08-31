@@ -36,3 +36,5 @@ build/
 .sass-cache
 
 *.sqlite3
+
+bower_components
