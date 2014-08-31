@@ -8,25 +8,44 @@ module Scoreboard
       serve '/js',     from: 'assets/js'
       serve '/css',    from: 'assets/css'
       serve '/fonts',  from: 'assets/fonts'
+      serve '/bc', from: 'assets/bower_components'
 
-      js_compression  :uglify
+      js :bower, '/js/bower_components.js', [
+        '/bc/jquery/dist/jquery.js',
+        '/bc/angular/angular.js',
+        '/bc/angular-ui-router/release/angular-ui-router.js',
+        '/bc/bootstrap-sortable/Scripts/bootstrap-sortable.js',
+        '/bc/moment/min/moment.min.js'
+      ]
+
+      js :scoreboard, '/js/angular_scoreboard.js', [
+        '/js/scoreboard.js',
+        '/js/home/home.js',
+        '/js/**/*.js'
+      ]
+
+      css :app, '/css/app.css', [
+        '/css/application.css',
+        '/bc/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
+        '/bc/bootstrap-sortable/Contents/bootstrap-sortable.css',
+        '/bc/font-awesome/css/font-awesome.min.css'
+      ]
+
+      js_compression :uglify
       css_compression :sass
     end
 
     enable :sessions
     enable :flash
 
-    layout :application
+    get :templates, map: '/templates/:dir/:file' do
+      render "templates/#{params[:dir]}/#{params[:file]}" rescue ''
+    end
 
-    get :index do
-      @semester = Semester.current_semester
-      @members = Member.high_score(@semester) unless @semester.nil?
+    get :all, map: '/*page', priority: :low  do
       render 'home/index'
     end
 
-    get :templates, map: '/template/:name' do
-      render "templates/#{params[:name]}", layout: false rescue ''
-    end
 
     def self.authorize(authorized)
       condition do

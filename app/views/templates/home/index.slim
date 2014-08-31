@@ -1,0 +1,19 @@
+h2.text-center  High Scores
+.row
+  .col-md-6.col-md-offset-3
+    table.table.table-striped.table-bordered
+      - if @members.nil?
+        p.text-center We aren't in the middle of a semester.
+      - else
+        tr
+          th Member
+          th Score
+        - @members.each do |member|
+          tr
+            td
+              span.inline-block.vert-middle
+                img src="#{member.gravatar}" width='25px'
+              span.inline-block.vert-middle
+                | &nbsp;
+                = member.full_name
+            td = member.memberships_for(@semester).count
