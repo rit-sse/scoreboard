@@ -8,6 +8,7 @@ SSE Membership Tracker built using Padrino.
 git clone https://github.com/rit-sse/scoreboard.git
 cd scoreboard
 bundle install --without production
+bower install
 bundle exec rake db:migrate
 padrino start
 ```
