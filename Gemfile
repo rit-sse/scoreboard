@@ -28,3 +28,4 @@ gem 'net-ldap'
 gem 'sinatra-assetpack', require: "sinatra/assetpack"
 gem 'rabl'
 gem 'oj'
+gem "codeclimate-test-reporter", group: :test, require: nil
