@@ -29,11 +29,10 @@
     });
   }
 
-  function run($rootScope) {
-    $rootScope.closeAlert = function(index) {
-      $rootScope.alerts.splice(index, 1);
-    };
-
-    $rootScope.alerts = [];
+  function run($rootScope, $http) {
+    $http.get('/scoreboard/api/logged_in')
+      .success(function(data){
+        $rootScope.signed_in = data.signed_in;
+      });
   }
 })();

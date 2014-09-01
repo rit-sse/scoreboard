@@ -59,8 +59,12 @@ Scoreboard::App.controllers :auth do
     end
   end
 
-  post :logout, map: '/api/logout' do
+  post :logout, map: '/api/logout', provides: [:json] do
     session.clear
     {notice: "Logged out successfully"}.to_json
+  end
+
+  get :logged_in, map: '/api/logged_in', provides: [:json] do
+    {signed_in: !current_user.nil?}.to_json
   end
 end
