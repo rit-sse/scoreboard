@@ -3,22 +3,23 @@ h2.text-center  High Scores
   .col-md-6.col-md-offset-3
     p.text-center ng-hide='members || loading'
       | We aren't in the middle of a semester.
-    table.table.table-striped.table-bordered ng-show='members && !loading'
-      tr
-        th #
-        th Member
-        th Score
-      tr ng-repeat='member in members[members_index]'
-        td
-          | {{ $index + 1 }}
-        td
-          span.inline-block.vert-middle
-            img ng-src='{{member.gravatar}}' width='25px'
-          span.inline-block.vert-middle style='margin-left: 10px'
-            | {{ member.full_name }}
-        td
-          | {{ member.count }}
-    .text-center
-      button.btn.btn-link ng-click='members_index = (members_index + 1)%2'
-        p ng-show='members_index === 0' Show More
-        p ng-show='members_index === 1' Show Less
+    div ng-show='members && !loading'
+      table.table.table-striped.table-bordered
+        tr
+          th #
+          th Member
+          th Score
+        tr ng-repeat='member in members[members_index]'
+          td
+            | {{ $index + 1 }}
+          td
+            span.inline-block.vert-middle
+              img ng-src='{{member.gravatar}}' width='25px'
+            span.inline-block.vert-middle style='margin-left: 10px'
+              | {{ member.full_name }}
+          td
+            | {{ member.count }}
+      .text-center
+        button.btn.btn-link ng-click='members_index = (members_index + 1)%2'
+          p ng-show='members_index === 0' Show More
+          p ng-show='members_index === 1' Show Less

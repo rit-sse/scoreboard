@@ -8,7 +8,6 @@ module Scoreboard
     assets do
       serve '/js',     from: 'assets/js'
       serve '/css',    from: 'assets/css'
-      serve '/fonts',  from: 'assets/fonts'
       serve '/bc', from: 'assets/bower_components'
 
       js :bower, '/js/bower_components.js', [
@@ -28,6 +27,7 @@ module Scoreboard
 
       css :app, '/css/app.css', [
         '/css/application.css',
+        '/css/spinner.css',
         '/bc/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
         '/bc/bootstrap-sortable/Contents/bootstrap-sortable.css',
         '/bc/font-awesome/css/font-awesome.min.css'

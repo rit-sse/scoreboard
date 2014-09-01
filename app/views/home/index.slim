@@ -7,38 +7,36 @@ html
     == css :app
     == js :bower
     == js :scoreboard
-
   body ng-app='scoreboard'
     .container
-      #header.page-header.flex
-        h1.text-left
-          a href='/scoreboard' class='no-decoration'
-            'Scoreboard
-          small SSE Membership Tracker
-        - if signed_in?
-          ul.list-inline.text-right.bottom-align
-            li
-              a href='/scoreboard/committees/new' Add Committee
-            li
-              a href='/scoreboard/semesters/new' Add Semester
-            li
-              a href='/scoreboard/memberships/new' Add Membership
-            li
-              a href='/scoreboard/memberships' Membership List
+      #header.page-header ng-controller='ToolbarController'
+        .flex
+          h1.text-left
+            a href='/scoreboard' class='no-decoration'
+              'Scoreboard
+            small SSE Membership Tracker
+          ul.list-inline.text-right.bottom-align.hidden-xs ng-if='signed_in'
+            li ng-repeat='link in logged_in_links'
+              a ng-href='{{link.url}}' {{link.content}}
             li
               = form_tag '/scoreboard/logout', id: 'signout'
                 = submit_tag 'Sign Out', class: 'btn btn-default'
-        - else
-            ul.list-inline.text-right.bottom-align
-              li
-              = form_tag '/scoreboard/auth', class: 'form-inline'
-                = text_field_tag :username, value: params[:username], class: "input-sm", placeholder: "Username"
-
-                = password_field_tag :password, value: params[:password], class: "input-sm", placeholder: "Password", style: 'margin-left: 10px'
-
-                = submit_tag 'Sign In', class: 'btn btn-default', style: 'margin-left: 10px'
+          ul.list-inline.text-right.bottom-align.hidden-xs ng-if='!signed_in'
+            li ng-repeat='link in logged_out_links'
+              a ng-href='{{link.url}}' {{link.content}}
+          ul.list-inline.text-right.bottom-align.visible-xs-inline-block
+            li
+              a ng-click='collapsed = !collapsed'
+                i.fa.fa-bars style='font-size: 20px'
+        div collapse='collapsed'
+          ul.visible-xs-block.fa-ul
+            li ng-repeat='link in logged_out_links' ng-if='!signed_in'
+              i.fa-li.fa ng-class='link.class'
+              a ng-href='{{link.url}}' {{link.content}}
+            li ng-repeat='link in logged_in_links' ng-if='signed_in'
+              i.fa-li.fa ng-class='link.class'
+              a ng-href='{{link.url}}' {{link.content}}
       div ui-view=''
-      .spinner ng-show='loading'
-        .bounce1
-        .bounce2
-        .bounce3
+      .text-center ng-show='loading'
+        i.fa.fa-spin.fa-spinner.fa-5x
+
