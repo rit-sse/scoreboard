@@ -29,10 +29,6 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
     end
   end
 
-  get :new, map: '/memberships/new' do
-    render 'memberships/new'
-  end
-
   post :create, map: '/memberships' do
     Member.create(params[:member]) # incase it doesn't exist
     @membership = Membership.new(params[:membership])

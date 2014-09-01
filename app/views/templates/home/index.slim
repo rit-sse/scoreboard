@@ -1,19 +1,24 @@
 h2.text-center  High Scores
 .row
   .col-md-6.col-md-offset-3
-    table.table.table-striped.table-bordered
-      - if @members.nil?
-        p.text-center We aren't in the middle of a semester.
-      - else
-        tr
-          th Member
-          th Score
-        - @members.each do |member|
-          tr
-            td
-              span.inline-block.vert-middle
-                img src="#{member.gravatar}" width='25px'
-              span.inline-block.vert-middle
-                | &nbsp;
-                = member.full_name
-            td = member.memberships_for(@semester).count
+    p.text-center ng-hide='members || loading'
+      | We aren't in the middle of a semester.
+    table.table.table-striped.table-bordered ng-show='members && !loading'
+      tr
+        th #
+        th Member
+        th Score
+      tr ng-repeat='member in members[members_index]'
+        td
+          | {{ $index + 1 }}
+        td
+          span.inline-block.vert-middle
+            img ng-src='{{member.gravatar}}' width='25px'
+          span.inline-block.vert-middle style='margin-left: 10px'
+            | {{ member.full_name }}
+        td
+          | {{ member.count }}
+    .text-center
+      button.btn.btn-link ng-click='members_index = (members_index + 1)%2'
+        p ng-show='members_index === 0' Show More
+        p ng-show='members_index === 1' Show Less

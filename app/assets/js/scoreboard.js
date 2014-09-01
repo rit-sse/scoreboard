@@ -2,7 +2,9 @@
   angular
     .module('scoreboard', [
       'ui.router',
-      'scoreboard.home'
+      'ui.bootstrap',
+      'scoreboard.home',
+      'spinner'
     ])
     .config(config);
 
@@ -14,6 +16,7 @@
     $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/scoreboard');
+    $httpProvider.interceptors.push( 'loadingSpinnerInterceptor' )
 
     $stateProvider
     .state('scoreboard', {

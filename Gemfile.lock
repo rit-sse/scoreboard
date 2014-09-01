@@ -36,6 +36,7 @@ GEM
     minitest (5.3.3)
     moneta (0.7.20)
     net-ldap (0.3.1)
+    oj (2.9.8)
     padrino (0.12.1)
       padrino-admin (= 0.12.1)
       padrino-cache (= 0.12.1)
@@ -72,6 +73,8 @@ GEM
       activesupport (>= 3.1)
     pg (0.17.1)
     polyglot (0.3.4)
+    rabl (0.10.1)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -132,8 +135,10 @@ DEPENDENCIES
   activerecord
   bootstrap-sass (~> 3.1.0)
   net-ldap
+  oj
   padrino (= 0.12.1)
   pg
+  rabl
   rack-test
   rake
   rspec

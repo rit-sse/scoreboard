@@ -26,3 +26,5 @@ gem 'uglifier'
 
 gem 'net-ldap'
 gem 'sinatra-assetpack', require: "sinatra/assetpack"
+gem 'rabl'
+gem 'oj'

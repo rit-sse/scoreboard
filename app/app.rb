@@ -4,6 +4,7 @@ module Scoreboard
     register Padrino::Helpers
     register Sinatra::AssetPack
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    set :session_secret, File.read(Padrino.root('.session_key')) if File.exists?(Padrino.root('.session_key'))
     assets do
       serve '/js',     from: 'assets/js'
       serve '/css',    from: 'assets/css'
@@ -15,7 +16,8 @@ module Scoreboard
         '/bc/angular/angular.js',
         '/bc/angular-ui-router/release/angular-ui-router.js',
         '/bc/bootstrap-sortable/Scripts/bootstrap-sortable.js',
-        '/bc/moment/min/moment.min.js'
+        '/bc/moment/min/moment.min.js',
+        '/bc/angular-bootstrap/ui-bootstrap.min.js'
       ]
 
       js :scoreboard, '/js/angular_scoreboard.js', [
@@ -39,7 +41,7 @@ module Scoreboard
     enable :flash
 
     get :templates, map: '/templates/:dir/:file' do
-      render "templates/#{params[:dir]}/#{params[:file]}" rescue ''
+      render "templates/#{params[:dir]}/#{params[:file]}"
     end
 
     get :all, map: '/*page', priority: :low  do
