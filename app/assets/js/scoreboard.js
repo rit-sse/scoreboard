@@ -3,6 +3,7 @@
     .module('scoreboard', [
       'ui.router',
       'ui.bootstrap',
+      'flash',
       'scoreboard.rest',
       'scoreboard.home',
       'spinner'

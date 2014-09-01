@@ -11,8 +11,7 @@ html
   body ng-app='scoreboard'
     .container
       br
-      alert ng-repeat='alert in alerts' type='{{alert.type}}' close='closeAlert($index)'
-        | {{alert.message}}
+      flash-messages
       #header.page-header ng-controller='ToolbarController'
         .flex
           h1.text-left

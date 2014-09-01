@@ -16,13 +16,16 @@ module Scoreboard
         '/bc/angular-ui-router/release/angular-ui-router.js',
         '/bc/bootstrap-sortable/Scripts/bootstrap-sortable.js',
         '/bc/moment/min/moment.min.js',
-        '/bc/angular-bootstrap/ui-bootstrap-tpls.min.js'
+        '/bc/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        '/bc/lodash/dist/lodash.min.js',
+        '/bc/restangular/dist/restangular.min.js'
       ]
 
       js :scoreboard, '/js/angular_scoreboard.js', [
         '/js/scoreboard.js',
         '/js/rest/rest.js',
         '/js/home/home.js',
+        '/js/committees/committees.js',
         '/js/**/*.js'
       ]
 
