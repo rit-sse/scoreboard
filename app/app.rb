@@ -16,7 +16,7 @@ module Scoreboard
         '/bc/angular-ui-router/release/angular-ui-router.js',
         '/bc/bootstrap-sortable/Scripts/bootstrap-sortable.js',
         '/bc/moment/min/moment.min.js',
-        '/bc/angular-bootstrap/ui-bootstrap.min.js'
+        '/bc/angular-bootstrap/ui-bootstrap-tpls.min.js'
       ]
 
       js :scoreboard, '/js/angular_scoreboard.js', [

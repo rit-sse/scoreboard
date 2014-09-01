@@ -6,7 +6,8 @@
       'scoreboard.home',
       'spinner'
     ])
-    .config(config);
+    .config(config)
+    .run(run);
 
   function config($stateProvider, $httpProvider, $locationProvider, $urlRouterProvider){
     var csrf = document.querySelector("meta[name=\"csrf-token\"]");
@@ -24,5 +25,13 @@
       abstract: true,
       template: '<div ui-view />'
     });
+  }
+
+  function run($rootScope) {
+    $rootScope.closeAlert = function(index) {
+      $rootScope.alerts.splice(index, 1);
+    };
+
+    $rootScope.alerts = [];
   }
 })();

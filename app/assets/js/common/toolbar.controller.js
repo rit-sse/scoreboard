@@ -28,7 +28,7 @@
     ];
     $scope.logged_out_links = [
       {
-        url: '/scorboard/login',
+        url: '/scoreboard/login',
         content: 'Sign In',
         class: 'fa-sign-in'
       }

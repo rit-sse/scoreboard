@@ -7,8 +7,12 @@ html
     == css :app
     == js :bower
     == js :scoreboard
+    == csrf_meta_tags
   body ng-app='scoreboard'
     .container
+      br
+      alert ng-repeat='alert in alerts' type='{{alert.type}}' close='closeAlert($index)'
+        | {{alert.message}}
       #header.page-header ng-controller='ToolbarController'
         .flex
           h1.text-left

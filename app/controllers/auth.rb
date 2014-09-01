@@ -1,13 +1,12 @@
 Scoreboard::App.controllers :auth do
-  post :authorize, map: '/auth' do
+  post :authorize, map: '/api/auth', provides: [:json] do
+    params = JSON.parse(request.body.read, symbolize_names: true)
     if ENV['RACK_ENV'] == 'development' and
       params[:username] == "admin" and
       params[:password] == "admin"
 
       set_current_user "admin", "admin"
-
-      flash[:success] = "Logged in successfully."
-      redirect_to '/scoreboard'
+      {notice: 'Successfully logged in!'}.to_json
     else
       username = params[:username]
       username = username[/\A\w+/].downcase
@@ -43,8 +42,8 @@ Scoreboard::App.controllers :auth do
         role = "admin"
 
         set_current_user username, role
-        flash[:success] = "Logged in successfully."
-        redirect_to '/scoreboard'
+
+        {notice: 'Successfully logged in!'}.to_json
       else
         if ldap
           error_notice = "Insufficient Privileges"
@@ -55,12 +54,12 @@ Scoreboard::App.controllers :auth do
 
       if error_notice
         flash[:error] = error_notice
-        redirect_to '/scoreboard'
+        [401, {}, { notice: error_notice }.to_json]
       end
     end
   end
 
-  post :authorize, map: '/logout' do
+  post :logout, map: '/api/logout' do
     session.clear
     flash[:success] = "Logged out successfully"
     redirect_to '/scoreboard'
