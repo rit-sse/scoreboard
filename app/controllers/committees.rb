@@ -1,16 +1,12 @@
 Scoreboard::App.controllers :committees, conditions: {authorize: true} do
-  get :new, map: '/committees/new' do
-    render 'committees/new'
-  end
-
-  post :create, map: '/committees' do
+  post :create, map: '/api/committees' do
+    params = JSON.parse(request.body.read, symbolize_names: true)
     @committee = Committee.new(params[:committee])
 
     if @committee.save
-      flash[:success] = 'Committee was successfully created'
-      redirect_to '/scoreboard'
+      { notice: 'Committee was successfully created' }.to_json
     else
-      render 'committees/new'
+      [422, {}, { errors: @committee.errors.full_messages }.to_json]
     end
   end
 end

@@ -6,17 +6,13 @@
       'flash',
       'scoreboard.rest',
       'scoreboard.home',
+      'scoreboard.committees',
       'spinner'
     ])
     .config(config)
     .run(run);
 
   function config($stateProvider, $httpProvider, $locationProvider, $urlRouterProvider){
-    var csrf = document.querySelector("meta[name=\"csrf-token\"]");
-    if(csrf){
-      var authToken = csrf.getAttribute("content");
-    }
-    $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/scoreboard');
     $httpProvider.interceptors.push( 'loadingSpinnerInterceptor' )
