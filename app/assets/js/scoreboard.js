@@ -3,6 +3,7 @@
     .module('scoreboard', [
       'ui.router',
       'ui.bootstrap',
+      'scoreboard.rest',
       'scoreboard.home',
       'spinner'
     ])

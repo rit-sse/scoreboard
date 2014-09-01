@@ -24,6 +24,11 @@
         url: '/scoreboard/memberships',
         content: 'Membership Lists',
         class: 'fa-users'
+      },
+      {
+        url: '/scoreboard/logout',
+        content: 'Sign Out',
+        class: 'fa-sign-out'
       }
     ];
     $scope.logged_out_links = [

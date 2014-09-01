@@ -61,7 +61,6 @@ Scoreboard::App.controllers :auth do
 
   post :logout, map: '/api/logout' do
     session.clear
-    flash[:success] = "Logged out successfully"
-    redirect_to '/scoreboard'
+    {notice: "Logged out successfully"}.to_json
   end
 end

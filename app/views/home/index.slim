@@ -22,9 +22,6 @@ html
           ul.list-inline.text-right.bottom-align.hidden-xs ng-if='signed_in'
             li ng-repeat='link in logged_in_links'
               a ng-href='{{link.url}}' {{link.content}}
-            li
-              = form_tag '/scoreboard/logout', id: 'signout'
-                = submit_tag 'Sign Out', class: 'btn btn-default'
           ul.list-inline.text-right.bottom-align.hidden-xs ng-if='!signed_in'
             li ng-repeat='link in logged_out_links'
               a ng-href='{{link.url}}' {{link.content}}

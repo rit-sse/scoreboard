@@ -16,6 +16,10 @@
       url: '/login',
       templateUrl: '/scoreboard/templates/home/login',
       controller: 'LoginController'
+    })
+    .state('scoreboard.logout', {
+      url: '/logout',
+      controller: 'LogoutController'
     });
   }
 })();

@@ -21,6 +21,7 @@ module Scoreboard
 
       js :scoreboard, '/js/angular_scoreboard.js', [
         '/js/scoreboard.js',
+        '/js/rest/rest.js',
         '/js/home/home.js',
         '/js/**/*.js'
       ]
