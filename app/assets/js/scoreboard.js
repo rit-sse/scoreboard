@@ -7,6 +7,7 @@
       'scoreboard.rest',
       'scoreboard.home',
       'scoreboard.committees',
+      'scoreboard.memberships',
       'spinner'
     ])
     .config(config)

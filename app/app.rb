@@ -26,6 +26,7 @@ module Scoreboard
         '/js/rest/rest.js',
         '/js/home/home.js',
         '/js/committees/committees.js',
+        '/js/memberships/memberships.js',
         '/js/**/*.js'
       ]
 

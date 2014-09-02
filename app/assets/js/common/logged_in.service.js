@@ -3,7 +3,7 @@
     .module('scoreboard')
     .factory('loggedIn', loggedIn);
 
-  function loggedIn($q, $timeout, $http, $state, $rootScope){
+  function loggedIn($q, $timeout, $http, $state, $rootScope, flash){
     return {
       loggedIn: function(){
         var deferred = $q.defer();
@@ -12,10 +12,9 @@
             $timeout(deferred.resolve, 0);
           }
           else {
-            $rootScope = [];
-            $rootScope.alerts.push({type: 'danger', message: 'You need to be logged in to view that'});
+            flash.danger.setMessage('You need to be logged in to view that');
             $timeout(function(){deferred.reject();}, 0);
-            $state.go('scoreboard.index');
+            $state.go('scoreboard.login');
           }
         });
       }

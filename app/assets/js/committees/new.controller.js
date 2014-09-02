@@ -12,8 +12,7 @@
         $state.go('scoreboard.index');
       }
       function error(response) {
-        flash.danger.setMessage(response.data.notice);
-        $rootScope.$emit("event:angularFlash");
+        $scope.errors = response.data.errors;
       }
     }
   }

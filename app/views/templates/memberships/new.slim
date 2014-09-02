@@ -1,0 +1,29 @@
+.row
+  .col-md-6.col-md-offset-3
+    form ng-submit='submit()' role='form'
+      div ng-show='errors'
+        h3 The following errors occured:
+        ul
+          li ng-repeat='error in errors'
+            | {{ error }}
+      .row
+        .col-xs-4
+          .form-group
+            label for='dce' DCE
+            input.form-control#dce type='text' ng-model='member.dce'
+        .col-xs-4
+          .form-group
+            label for='first_name' First Name
+            input.form-control#first_name type='text' ng-model='member.first_name'
+        .col-xs-4
+          .form-group
+            label for='last_name' Last Name
+            input.form-control#last_name type='text' ng-model='member.last_name'
+      .form-group
+        label for='committees' Committee
+        select.form-control#committees ng-options='committee.id as committee.name for committee in committees ' ng-model='membership.committee_id'
+      .form-group
+        label for='reason' Reason
+        input.form-control#reason type='text' ng-model='membership.reason'
+      .form-group
+        button.btn.btn-primary type='submit' Create

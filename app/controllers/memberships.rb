@@ -29,17 +29,17 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
     end
   end
 
-  post :create, map: '/memberships' do
+  post :create, map: '/api/memberships' do
+    params = JSON.parse(request.body.read, symbolize_names: true)
     Member.create(params[:member]) # incase it doesn't exist
     @membership = Membership.new(params[:membership])
     @membership.member = Member.find_by_dce(params[:member][:dce])
     @membership.semester = Semester.current_semester
 
     if @membership.save
-      flash[:success] = 'Membership was successfully created'
-      redirect_to '/scoreboard/memberships/new'
+      { notice: 'Membership was successfully created' }.to_json
     else
-      render 'memberships/new'
+      [422, {}, { errors: @membership.errors.full_messages }.to_json]
     end
   end
 
