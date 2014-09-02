@@ -1,7 +1,7 @@
 require 'csv'
 Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
 
-  get :index, map: '/memberships', provides: [:html, :csv] do
+  get :index, map: '/api/memberships', provides: [:json, :csv] do
     @semester = Semester.current_semester
     unless @semester.nil?
       @memberships = @semester.memberships
@@ -10,7 +10,7 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
       @memberships = []
     end
     case content_type
-    when :html
+    when :json
       render 'memberships/index'
     when :csv
       CSV.generate do |csv|

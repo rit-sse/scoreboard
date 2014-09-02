@@ -1,0 +1,3 @@
+collection @semesters
+
+attributes :name

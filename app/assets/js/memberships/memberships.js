@@ -19,6 +19,16 @@
           loggedIn.loggedIn();
         }
       }
+    })
+    .state('scoreboard.memberships.index', {
+      url: '?unique',
+      templateUrl: '/scoreboard/templates/memberships/index',
+      controller: 'MembershipsIndexController',
+      resolve: {
+        loggedIn: function(loggedIn) {
+          loggedIn.loggedIn();
+        }
+      }
     });
   }
 })();

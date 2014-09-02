@@ -4,11 +4,11 @@
       'ui.router',
       'ui.bootstrap',
       'flash',
+      'spinner',
       'scoreboard.rest',
       'scoreboard.home',
       'scoreboard.committees',
-      'scoreboard.memberships',
-      'spinner'
+      'scoreboard.memberships'
     ])
     .config(config)
     .run(run);

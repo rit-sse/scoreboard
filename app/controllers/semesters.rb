@@ -1,7 +1,8 @@
 Scoreboard::App.controllers :semesters, conditions: {authorize: true} do
 
-  get :new, map: '/semesters/new' do
-    render 'semesters/new'
+  get :index, map: '/api/semesters', provides: [:json] do
+    @semesters = Semester.all
+    render 'semesters/index'
   end
 
   post :create, map: '/semesters' do
