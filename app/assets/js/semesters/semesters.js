@@ -3,17 +3,22 @@
     .module('scoreboard.semesters', [])
     .config(config);
 
-  function config($stateProvider) {
+  function config($stateProvider, $datepickerProvider) {
     $stateProvider
-    .state('scoreboard.semester', {
-      url: '/semester',
+    .state('scoreboard.semesters', {
+      url: '/semesters',
       abstract: true,
       template: '<div ui-view />'
     })
-    .state('scoreboard.semester.new', {
+    .state('scoreboard.semesters.new', {
       url: '/new',
-      templateUrl: '/scoreboard/templates/memberships/index',
-      controller: 'MembersShowController'
+      templateUrl: '/scoreboard/templates/semesters/new',
+      controller: 'SemestersNewController'
+    });
+
+    angular.extend($datepickerProvider.defaults, {
+      iconLeft: 'fa fa-chevron-left',
+      iconRight: 'fa fa-chevron-right'
     });
   }
 })();

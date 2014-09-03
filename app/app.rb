@@ -19,7 +19,9 @@ module Scoreboard
         '/bc/moment/min/moment.min.js',
         '/bc/angular-bootstrap/ui-bootstrap-tpls.min.js',
         '/bc/lodash/dist/lodash.min.js',
-        '/bc/restangular/dist/restangular.min.js'
+        '/bc/restangular/dist/restangular.min.js',
+        '/bc/angular-strap/dist/angular-strap.min.js',
+        '/bc/angular-strap/dist/angular-strap.tpl.min.js'
       ]
 
       js :scoreboard, '/js/angular_scoreboard.js', [
@@ -29,13 +31,13 @@ module Scoreboard
         '/js/committees/committees.js',
         '/js/memberships/memberships.js',
         '/js/members/members.js',
+        '/js/semesters/semesters.js',
         '/js/**/*.js'
       ]
 
       css :app, '/css/app.css', [
         '/css/application.css',
         '/css/spinner.css',
-        '/bc/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
         '/bc/bootstrap-sortable/Contents/bootstrap-sortable.css',
         '/bc/font-awesome/css/font-awesome.min.css'
       ]

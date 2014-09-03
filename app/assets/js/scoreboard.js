@@ -3,13 +3,16 @@
     .module('scoreboard', [
       'ui.router',
       'ui.bootstrap',
+      'mgcrea.ngStrap',
       'flash',
       'spinner',
       'scoreboard.rest',
       'scoreboard.home',
       'scoreboard.committees',
       'scoreboard.memberships',
-      'scoreboard.members'
+      'scoreboard.members',
+      'scoreboard.semesters',
+
     ])
     .config(config)
     .run(run);
