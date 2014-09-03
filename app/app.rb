@@ -37,7 +37,6 @@ module Scoreboard
 
       css :app, '/css/app.css', [
         '/css/application.css',
-        '/css/spinner.css',
         '/bc/bootstrap-sortable/Contents/bootstrap-sortable.css',
         '/bc/font-awesome/css/font-awesome.min.css'
       ]
