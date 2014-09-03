@@ -1,4 +1,4 @@
-p.text-center ng-if='!memberships && !loading' No current semester
+p.text-center ng-if='!memberships && !loading' Not a semester
 h2.text-center ng-if='memberships'
   | Memberships for {{memberships[0].semester.name}}
 table.table.table-striped.sortable
@@ -31,4 +31,4 @@ table.table.table-striped.sortable
 h3.text-center Semesters
 ul.list-inline.text-center
   li ng-repeat='semester in semesters'
-    a ng-href='/scoreboard/semesters/{{semester.name}}' {{semester.name}}
+    a ng-href='/scoreboard/memberships?semester={{semester.name}}' {{semester.name}}

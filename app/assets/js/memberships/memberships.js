@@ -21,7 +21,7 @@
       }
     })
     .state('scoreboard.memberships.index', {
-      url: '?unique',
+      url: '?unique&semester',
       templateUrl: '/scoreboard/templates/memberships/index',
       controller: 'MembershipsIndexController',
       resolve: {
