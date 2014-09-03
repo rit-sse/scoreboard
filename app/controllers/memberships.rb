@@ -1,5 +1,5 @@
 require 'csv'
-Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
+Scoreboard::App.controllers :memberships do
   has_scope :memberships, :unique, type: :boolean
   has_scope :memberships, :semester
   has_scope :memberships, :dce
@@ -27,7 +27,7 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
     end
   end
 
-  post :create, map: '/api/memberships' do
+  post :create, map: '/api/memberships', authorize: true do
     params = JSON.parse(request.body.read, symbolize_names: true)
     Member.create(params[:member]) # incase it doesn't exist
     @membership = Membership.new(params[:membership])
