@@ -8,7 +8,8 @@
       'scoreboard.rest',
       'scoreboard.home',
       'scoreboard.committees',
-      'scoreboard.memberships'
+      'scoreboard.memberships',
+      'scoreboard.members'
     ])
     .config(config)
     .run(run);

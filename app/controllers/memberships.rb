@@ -1,14 +1,12 @@
 require 'csv'
 Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
+  has_scope :memberships, :unique, type: :boolean
+  has_scope :memberships, :semester
+  has_scope :memberships, :dce
+
 
   get :index, map: '/api/memberships', provides: [:json, :csv] do
-    @semester = Semester.current_semester
-    unless @semester.nil?
-      @memberships = @semester.memberships
-      @memberships = @memberships.unique if params[:unique]
-    else
-      @memberships = []
-    end
+    @memberships = apply_scopes(:memberships, Membership, params).all
     case content_type
     when :json
       render 'memberships/index'

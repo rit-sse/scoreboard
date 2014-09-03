@@ -3,6 +3,7 @@ module Scoreboard
     register Padrino::Rendering
     register Padrino::Helpers
     register Sinatra::AssetPack
+    register Sinatra::HasScope
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     set :session_secret, File.read(Padrino.root('.session_key')) if File.exists?(Padrino.root('.session_key'))
     assets do
@@ -27,6 +28,7 @@ module Scoreboard
         '/js/home/home.js',
         '/js/committees/committees.js',
         '/js/memberships/memberships.js',
+        '/js/members/members.js',
         '/js/**/*.js'
       ]
 
@@ -52,7 +54,6 @@ module Scoreboard
     get :all, map: '/*page', priority: :low  do
       render 'home/index'
     end
-
 
     def self.authorize(authorized)
       condition do

@@ -109,6 +109,7 @@ GEM
       rack-test
       sinatra
       tilt (>= 1.3.0, < 2.0)
+    sinatra-has_scope (0.1.0)
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -154,6 +155,7 @@ DEPENDENCIES
   rspec
   sass
   sinatra-assetpack
+  sinatra-has_scope
   slim
   smarter_csv
   sqlite3

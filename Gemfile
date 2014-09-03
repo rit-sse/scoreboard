@@ -29,3 +29,4 @@ gem 'sinatra-assetpack', require: "sinatra/assetpack"
 gem 'rabl'
 gem 'oj'
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'sinatra-has_scope', :require => 'sinatra/has_scope'
