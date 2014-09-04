@@ -1,6 +1,9 @@
 p.text-center ng-if='!memberships && !loading' Not a semester
 h2.text-center ng-if='memberships'
   | Memberships for {{memberships[0].semester.name}}
+button.btn.btn-primary.pull-right ng-click='csv()'
+  i.fa.fa-download
+  | Export
 table.table.table-striped.sortable
   thead
     tr

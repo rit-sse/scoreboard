@@ -3,7 +3,7 @@
     .module('scoreboard.memberships')
     .controller('MembershipsIndexController', MembershipsIndexController);
 
-  function MembershipsIndexController($scope, $filter, $stateParams, Membership, Semester) {
+  function MembershipsIndexController($scope, $filter, $stateParams, Membership, Semester, $http) {
     Membership.getList($stateParams).then(function(data){
       $scope.memberships = data;
       _.map($scope.memberships, function(membership){
@@ -24,6 +24,16 @@
         $scope.reverse = false;
         $scope.order= newCol;
       }
+    }
+
+    $scope.csv = function(){
+      $http.get('/scoreboard/api/memberships.csv', {params: $stateParams})
+        .success(function(data){
+          var hiddenElement = document.createElement('a');
+          hiddenElement.href = 'data:attachment/csv,' + encodeURI(data);
+          hiddenElement.download = 'memberships.csv';
+          hiddenElement.click();
+        });
     }
   }
 })();
