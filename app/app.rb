@@ -20,8 +20,8 @@ module Scoreboard
         '/bc/angular-bootstrap/ui-bootstrap-tpls.min.js',
         '/bc/lodash/dist/lodash.min.js',
         '/bc/restangular/dist/restangular.min.js',
-        '/bc/angular-strap/dist/angular-strap.min.js',
-        '/bc/angular-strap/dist/angular-strap.tpl.min.js'
+        '/js/angular-strap/angular-strap.min.js',
+        '/js/angular-strap/angular-strap.tpl.min.js'
       ]
 
       js :scoreboard, '/js/angular_scoreboard.js', [
