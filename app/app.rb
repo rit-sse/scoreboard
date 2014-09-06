@@ -37,11 +37,10 @@ module Scoreboard
 
       css :app, '/css/app.css', [
         '/css/application.css',
-        '/bc/bootstrap-sortable/Contents/bootstrap-sortable.css',
-        '/bc/font-awesome/css/font-awesome.min.css'
+        '/bc/bootstrap-sortable/Contents/bootstrap-sortable.css'
       ]
 
-      js_compression :uglify
+      js_compression :uglify, mangle: false
       css_compression :sass
     end
 
@@ -75,6 +74,9 @@ module Scoreboard
     end
 
     after do
+      if request.url.end_with?('css')
+        headers "Content-Type" => "text/css;charset=utf-8"
+      end
       ActiveRecord::Base.connection.close
     end
   end
