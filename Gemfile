@@ -1,7 +1,5 @@
 source 'http://rubygems.org'
 
-gem "compass", "~>0.12.6"
-#gem "bootstrap-sass", "~>2.3.2"
 gem "bootstrap-sass", "~>3.1.0"
 
 # Project requirements
@@ -24,5 +22,11 @@ gem 'smarter_csv'
 
 gem 'unicorn', group: 'production'
 gem 'thin'
+gem 'uglifier'
 
 gem 'net-ldap'
+gem 'sinatra-assetpack', require: "sinatra/assetpack"
+gem 'rabl'
+gem 'oj'
+gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'sinatra-has_scope', :require => 'sinatra/has_scope'

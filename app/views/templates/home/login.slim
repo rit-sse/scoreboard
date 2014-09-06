@@ -1,0 +1,12 @@
+form.form-horizontal ng-submit='login()' role='form'
+  .form-group
+    label.col-sm-2.control-label for='username' Username
+    .col-sm-10
+      input.form-control#username name='username' type='text' placeholder="Username" ng-model='user.username'
+  .form-group
+    label.col-sm-2.control-label for='password' Password
+    .col-sm-10
+      input.form-control#password name='password' type='password' placeholder="Password" ng-model='user.password'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-default type='submit' Sign in

@@ -1,0 +1,26 @@
+.row
+  .col-md-6.col-md-offset-3
+
+    form ng-submit='submit()' role='form'
+      div ng-show='errors'
+        h3 The following errors occured:
+        ul
+          li ng-repeat='error in errors'
+            | {{ error }}
+      .form-group
+        label for='name' Semester Name
+        input#name.form-control type='text' ng-model='semester.name'
+      .form-group
+        label for='start-date' Start Date
+        .input-group.date
+          input#start-date.form-control type='text' ng-model='semester.start_date' bs-datepicker=''
+          span.input-group-addon
+            span.fa.fa-calendar
+      .form-group
+        label for='end-date' End Date
+        .input-group.date
+          input#end-date.form-control type='text' ng-model='semester.end_date' bs-datepicker=''
+          span.input-group-addon
+            span.fa.fa-calendar
+      .form-group
+        button.btn.btn-primary type='submit' Create

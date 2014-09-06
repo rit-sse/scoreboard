@@ -36,6 +36,9 @@ Bundler.require(:default, RACK_ENV)
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
+  Rabl.configure do |config|
+    config.include_json_root = false
+  end
 end
 
 ##

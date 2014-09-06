@@ -1,9 +1,14 @@
 Scoreboard::App.controllers :members do
 
-  get :show, map: '/members/:dce' do
+  get :show, map: '/api/members/:dce' do
     @member = Member.find_by_dce(params[:dce])
-    @semester = Semester.find_by_name(params[:semester]) || Semester.current_semester
+    if params[:semester].nil?
+      @semester = Semester.current_semester
+    else
+      @semester = Semester.find_by_name(params[:semester])
+    end
     render 'members/show'
   end
+
 
 end
