@@ -5,7 +5,7 @@ Scoreboard::App.controllers :semesters do
     render 'semesters/index'
   end
 
-  post :create, map: '/api/semesters', authorize: true do
+  post :create, map: '/api/semesters', authorize: true, provides: [:json] do
     params = JSON.parse(request.body.read, symbolize_names: true)
     @semester = Semester.new(params[:semester])
     @semester.start_date = Date.parse(params[:semester][:start_date])
@@ -18,7 +18,7 @@ Scoreboard::App.controllers :semesters do
     end
   end
 
-  get :show, map: '/api/semesters/:name', provides: [:html, :csv] do
+  get :show, map: '/api/semesters/:name', provides: [:json, :csv] do
     @semester = Semester.find_by_name(params[:name])
   end
 
