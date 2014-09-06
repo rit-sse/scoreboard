@@ -14,8 +14,10 @@ class Member < ActiveRecord::Base
   end
 
   def self.high_score(semester)
-    all.sort{|a,b| b.memberships_for(semester).count <=> a.memberships_for(semester).count}
+    Hash[semester.memberships.group_by { |membership| membership.member }.to_a
+      .sort{|a,b| b[1].count <=> a[1].count}].keys
   end
+
 
   def gravatar
     email_address = "#{dce}@rit.edu".downcase

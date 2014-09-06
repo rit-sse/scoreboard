@@ -29,3 +29,5 @@ namespace :server do
   end
 
 end
+
+task default: :spec

@@ -1,9 +1,0 @@
-.row
-  .col-md-6.col-md-offset-3
-    = form_for :committee, '/scoreboard/committees' do |f|
-      = f.error_messages
-      .form-group
-        = f.label :name, caption: 'Committee Name'
-        = f.text_field :name, class: 'form-control'
-      .form-group
-        = f.submit 'Create', class: 'btn btn-primary'

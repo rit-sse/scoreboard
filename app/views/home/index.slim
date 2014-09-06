@@ -1,19 +1,42 @@
-h2.text-center  High Scores
-.row
-  .col-md-6.col-md-offset-3
-    table.table.table-striped.table-bordered
-      - if @members.nil?
-        p.text-center We aren't in the middle of a semester.
-      - else
-        tr
-          th Member
-          th Score
-        - @members.each do |member|
-          tr
-            td
-              span.inline-block.vert-middle
-                img src="#{member.gravatar}" width='25px'
-              span.inline-block.vert-middle
-                | &nbsp;
-                = member.full_name
-            td = member.memberships_for(@semester).count
+doctype html
+html
+  head
+    title Scoreboard
+    base href='/scorboard'
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    == css :app
+    == js :bower
+    == js :scoreboard
+    == csrf_meta_tags
+  body ng-app='scoreboard'
+    .container
+      br
+      flash-messages
+      #header.page-header ng-controller='ToolbarController'
+        .flex
+          h1.text-left
+            a href='/scoreboard' class='no-decoration'
+              'Scoreboard
+            small SSE Membership Tracker
+          ul.list-inline.text-right.bottom-align.hidden-xs ng-if='signed_in'
+            li ng-repeat='link in logged_in_links'
+              a ng-href='{{link.url}}' {{link.content}}
+          ul.list-inline.text-right.bottom-align.hidden-xs ng-if='!signed_in'
+            li ng-repeat='link in logged_out_links'
+              a ng-href='{{link.url}}' {{link.content}}
+          ul.list-inline.text-right.bottom-align.visible-xs-inline-block
+            li
+              a ng-click='collapsed = !collapsed'
+                i.fa.fa-bars style='font-size: 20px'
+        div collapse='collapsed'
+          ul.visible-xs-block.fa-ul
+            li ng-repeat='link in logged_out_links' ng-if='!signed_in'
+              i.fa-li.fa ng-class='link.class'
+              a ng-href='{{link.url}}' {{link.content}}
+            li ng-repeat='link in logged_in_links' ng-if='signed_in'
+              i.fa-li.fa ng-class='link.class'
+              a ng-href='{{link.url}}' {{link.content}}
+      div ui-view=''
+      .text-center ng-show='loading'
+        i.fa.fa-spin.fa-spinner.fa-5x
+

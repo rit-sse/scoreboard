@@ -1,0 +1,9 @@
+div
+  .alert.alert-info ng-show="flash.info.getMessage()"
+    | {{ flash.info.getMessage() }}
+  .alert.alert-success ng-show="flash.success.getMessage()"
+    | {{ flash.success.getMessage() }}
+  .alert.alert-warning ng-show="flash.warning.getMessage()"
+    | {{ flash.warning.getMessage() }}
+  .alert.alert-danger ng-show="flash.danger.getMessage()"
+    | {{ flash.danger.getMessage() }}

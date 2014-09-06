@@ -5,5 +5,7 @@ class Membership < ActiveRecord::Base
 
   validates :semester_id, :committee_id, :member_id, :reason, presence: true
 
-  scope :unique, -> { select("DISTINCT ON (member_id) *") }
+  scope :unique, -> { group(:member_id) }
+  scope :semester, -> semester { where(semester_id: Semester.find_by_name(semester).id) }
+  scope :dce, -> member { where(member_id: Member.find_by_dce(member).id) }
 end

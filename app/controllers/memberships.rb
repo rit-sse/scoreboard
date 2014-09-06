@@ -1,16 +1,14 @@
 require 'csv'
-Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
+Scoreboard::App.controllers :memberships do
+  has_scope :memberships, :unique, type: :boolean
+  has_scope :memberships, :semester
+  has_scope :memberships, :dce
 
-  get :index, map: '/memberships', provides: [:html, :csv] do
-    @semester = Semester.current_semester
-    unless @semester.nil?
-      @memberships = @semester.memberships
-      @memberships = @memberships.unique if params[:unique]
-    else
-      @memberships = []
-    end
+
+  get :index, map: '/api/memberships', provides: [:json, :csv] do
+    @memberships = apply_scopes(:memberships, Membership, params).all
     case content_type
-    when :html
+    when :json
       render 'memberships/index'
     when :csv
       CSV.generate do |csv|
@@ -29,21 +27,17 @@ Scoreboard::App.controllers :memberships,  conditions: {authorize: true} do
     end
   end
 
-  get :new, map: '/memberships/new' do
-    render 'memberships/new'
-  end
-
-  post :create, map: '/memberships' do
+  post :create, map: '/api/memberships', authorize: true do
+    params = JSON.parse(request.body.read, symbolize_names: true)
     Member.create(params[:member]) # incase it doesn't exist
     @membership = Membership.new(params[:membership])
     @membership.member = Member.find_by_dce(params[:member][:dce])
     @membership.semester = Semester.current_semester
 
     if @membership.save
-      flash[:success] = 'Membership was successfully created'
-      redirect_to '/scoreboard/memberships/new'
+      { notice: 'Membership was successfully created' }.to_json
     else
-      render 'memberships/new'
+      [422, {}, { errors: @membership.errors.full_messages }.to_json]
     end
   end
 

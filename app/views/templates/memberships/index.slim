@@ -1,0 +1,37 @@
+p.text-center ng-if='!memberships && !loading' Not a semester
+h2.text-center ng-if='memberships'
+  | Memberships for {{memberships[0].semester.name}}
+button.btn.btn-primary.pull-right ng-click='csv()'
+  i.fa.fa-download
+  | Export
+table.table.table-striped.sortable
+  thead
+    tr
+      th #
+      th ng-click='sort("created_at")' Date
+      th ng-click='sort("member.dce")' DCE
+      th ng-click='sort("member.first_name")' First Name
+      th ng-click='sort("member.last_name")' Last Name
+      th ng-click='sort("committee.name")' Committee
+      th ng-click='sort("reason")' Reason
+  tbody
+    tr ng-repeat='membership in memberships | orderBy:order:reverse'
+      td
+        | {{$index+1}}
+      td
+        | {{membership.date}}
+      td
+        | {{membership.member.dce}}
+      td
+        | {{membership.member.first_name}}
+      td
+        | {{membership.member.last_name}}
+      td
+        | {{membership.committee.name}}
+      td
+        | {{membership.reason}}
+
+h3.text-center Semesters
+ul.list-inline.text-center
+  li ng-repeat='semester in semesters'
+    a ng-href='/scoreboard/memberships?semester={{semester.name}}' {{semester.name}}
