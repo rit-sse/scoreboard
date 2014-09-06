@@ -5,8 +5,8 @@ Scoreboard::App.controllers :home do
     else
       @semester = Semester.current_semester
     end
-    @members = Member.high_score(@semester)
     unless @semester.nil?
+      @members = Member.high_score(@semester)
       render 'home/high_scores'
     else
       [].to_json

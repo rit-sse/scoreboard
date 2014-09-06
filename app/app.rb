@@ -41,7 +41,7 @@ module Scoreboard
         '/bc/font-awesome/css/font-awesome.min.css'
       ]
 
-      js_compression :uglify
+      js_compression :uglify, mangle: false
       css_compression :sass
     end
 
