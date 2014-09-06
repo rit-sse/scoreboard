@@ -27,7 +27,7 @@ Scoreboard::App.controllers :memberships do
     end
   end
 
-  post :create, map: '/api/memberships', authorize: true do
+  post :create, map: '/api/memberships', authorize: true, provides: [:json] do
     params = JSON.parse(request.body.read, symbolize_names: true)
     Member.create(params[:member]) # incase it doesn't exist
     @membership = Membership.new(params[:membership])
