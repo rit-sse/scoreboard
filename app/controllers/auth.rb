@@ -6,6 +6,12 @@ Scoreboard::App.controllers :auth do
       params[:password] == "admin"
 
       set_current_user "admin", "admin"
+      {notice: 'Successfully logged in!', admin: admin?}.to_json
+    elsif ENV['RACK_ENV'] == 'development' and
+      params[:username] == "user" and
+      params[:password] == "user"
+
+      set_current_user "user", "committee"
       {notice: 'Successfully logged in!'}.to_json
     else
       username = params[:username]
@@ -46,16 +52,13 @@ Scoreboard::App.controllers :auth do
 
         set_current_user user, role
 
-        {notice: 'Successfully logged in!'}.to_json
+        {notice: 'Successfully logged in!', admin: admin?}.to_json
       else
         if ldap
           error_notice = "Insufficient Privileges"
         else
           error_notice = "Error: #{ldap.get_operation_result.message}"
         end
-      end
-
-      if error_notice
         flash[:error] = error_notice
         [401, {}, { notice: error_notice }.to_json]
       end
@@ -68,6 +71,6 @@ Scoreboard::App.controllers :auth do
   end
 
   get :logged_in, map: '/api/logged_in', provides: [:json] do
-    {signed_in: !current_user.nil?}.to_json
+    {signed_in: signed_in?, admin: admin? }.to_json
   end
 end

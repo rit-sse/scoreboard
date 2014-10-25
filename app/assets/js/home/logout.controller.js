@@ -9,6 +9,7 @@
       .success(function(data){
         flash.success.setMessage(data.notice);
         $rootScope.signed_in = false;
+        $rootScope.admin = false;
         $state.go('scoreboard.index');
       });
   }

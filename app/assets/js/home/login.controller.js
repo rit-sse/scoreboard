@@ -11,6 +11,7 @@
         .success(function(data){
           flash.success.setMessage(data.notice);
           $rootScope.signed_in = true;
+          $rootScope.admin = data.admin;
           $state.go('scoreboard.index');
         })
         .error(function(data){

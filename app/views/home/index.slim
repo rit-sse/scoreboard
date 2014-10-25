@@ -20,6 +20,8 @@ html
               'Scoreboard
             small SSE Membership Tracker
           ul.list-inline.text-right.bottom-align.hidden-xs ng-if='signed_in'
+            li ng-if='admin'
+              a href='/memberships/approve' Approve
             li ng-repeat='link in logged_in_links'
               a ng-href='{{link.url}}' {{link.content}}
           ul.list-inline.text-right.bottom-align.hidden-xs ng-if='!signed_in'
@@ -31,12 +33,16 @@ html
                 i.fa.fa-bars style='font-size: 20px'
         div collapse='collapsed'
           ul.visible-xs-block.fa-ul
+            li ng-if='admin'
+              i.fa-li.fa.fa-check
+              a href='/memberships/approve' Approve
             li ng-repeat='link in logged_out_links' ng-if='!signed_in'
               i.fa-li.fa ng-class='link.class'
               a ng-href='{{link.url}}' {{link.content}}
             li ng-repeat='link in logged_in_links' ng-if='signed_in'
               i.fa-li.fa ng-class='link.class'
               a ng-href='{{link.url}}' {{link.content}}
+
       div ui-view=''
       .text-center ng-show='loading'
         i.fa.fa-spin.fa-spinner.fa-5x

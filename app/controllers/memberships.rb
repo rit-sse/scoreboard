@@ -4,7 +4,6 @@ Scoreboard::App.controllers :memberships do
   has_scope :memberships, :semester
   has_scope :memberships, :dce
 
-
   get :index, map: '/api/memberships', provides: [:json, :csv] do
     @memberships = apply_scopes(:memberships, Membership, params).approved
     case content_type
@@ -25,6 +24,11 @@ Scoreboard::App.controllers :memberships do
         end
       end
     end
+  end
+
+  get :admin_index, map: '/api/admin/memberships', admin: true, provides: [:json] do
+    @memberships = Membership.needs_approval
+    render 'memberships/index'
   end
 
   post :create, map: '/api/memberships', authorize: true, provides: [:json] do

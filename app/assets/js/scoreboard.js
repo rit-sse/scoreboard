@@ -34,6 +34,7 @@
     $http.get('/scoreboard/api/logged_in')
       .success(function(data){
         $rootScope.signed_in = data.signed_in;
+        $rootScope.admin = data.admin;
       });
   }
 })();
