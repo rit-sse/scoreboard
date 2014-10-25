@@ -38,10 +38,13 @@ Scoreboard::App.controllers :auth do
 
       if authorized
 
-        username = user
-        role = "admin"
+        if ['president', 'vp', 'secretary', 'treasurer'].include?(username)
+          role = 'admin'
+        else
+          role = 'committee'
+        end
 
-        set_current_user username, role
+        set_current_user user, role
 
         {notice: 'Successfully logged in!'}.to_json
       else
