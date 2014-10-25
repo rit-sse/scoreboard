@@ -5,6 +5,8 @@ Scoreboard::App.controllers :memberships do
   has_scope :memberships, :dce
 
   get :index, map: '/api/memberships', provides: [:json, :csv] do
+    params["semester"] ||= Semester.current_semester.name
+    logger.info(params)
     @memberships = apply_scopes(:memberships, Membership, params).approved
     case content_type
     when :json
@@ -27,7 +29,7 @@ Scoreboard::App.controllers :memberships do
   end
 
   get :admin_index, map: '/api/admin/memberships', admin: true, provides: [:json] do
-    @memberships = Membership.needs_approval
+    @memberships = Semester.current_semester.memberships.needs_approval
     render 'memberships/index'
   end
 
@@ -45,13 +47,15 @@ Scoreboard::App.controllers :memberships do
     end
   end
 
-  put :updated, map: '/api/memberships/:id', admin: true, provides: [:json] do
-    params = JSON.parse(request.body.read, symbolize_names: true)
+  put :update, map: '/api/memberships/:id', admin: true, provides: [:json] do
     @membership = Membership.find(params[:id])
+    params = JSON.parse(request.body.read, symbolize_names: true)
     if @membership.update(params)
       { notice: 'Membership was successfully updated' }.to_json
     else
       [422, {}, { errors: @membership.errors.full_messages }.to_json]
     end
   end
+
+
 end

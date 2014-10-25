@@ -10,7 +10,7 @@ class Member < ActiveRecord::Base
   end
 
   def memberships_for(semester)
-    memberships.where(semester_id: semester.id)
+    memberships.where(semester_id: semester.id).approved
   end
 
   def self.high_score(semester)
