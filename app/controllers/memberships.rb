@@ -6,7 +6,7 @@ Scoreboard::App.controllers :memberships do
 
 
   get :index, map: '/api/memberships', provides: [:json, :csv] do
-    @memberships = apply_scopes(:memberships, Membership, params).all
+    @memberships = apply_scopes(:memberships, Membership, params).approved
     case content_type
     when :json
       render 'memberships/index'
@@ -41,4 +41,13 @@ Scoreboard::App.controllers :memberships do
     end
   end
 
+  put :updated, map: '/api/memberships/:id', admin: true, provides: [:json] do
+    params = JSON.parse(request.body.read, symbolize_names: true)
+    @membership = Membership.find(params[:id])
+    if @membership.update(params)
+      { notice: 'Membership was successfully updated' }.to_json
+    else
+      [422, {}, { errors: @membership.errors.full_messages }.to_json]
+    end
+  end
 end

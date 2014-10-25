@@ -61,6 +61,12 @@ module Scoreboard
       end if authorized
     end
 
+    def self.admin(admin)
+      condition do
+        halt 403, 'Not authorized' unless admin?
+      end if admin
+    end
+
     error 403 do
       render('errors/403')
     end
