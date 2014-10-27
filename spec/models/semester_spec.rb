@@ -2,8 +2,61 @@ require 'spec_helper'
 
 RSpec.describe Semester do
 
-  describe 'custom validations' do
-    it 'should not allow overlapping'
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :start_date }
+    it { is_expected.to validate_presence_of :end_date }
+    it { is_expected.to validate_uniqueness_of :name }
+    context 'overlapping' do
+      it 'should not allow start_date to overlap' do
+        d = Date.today
+        s1 = Semester.create(name: 'current semester',
+                          start_date: d - 5.days,
+                          end_date: d + 5.days  )
+        s2 = Semester.create(name: 'bad semester',
+                        start_date: d - 4.days,
+                        end_date: d - 10.days  )
+        expect(Semester.count).to eql(1)
+      end
+
+      it 'should not allow end_date to overlap' do
+        d = Date.today
+        s1 = Semester.create(name: 'current semester',
+                          start_date: d - 5.days,
+                          end_date: d + 5.days  )
+        s2 = Semester.create(name: 'bad semester',
+                        start_date: d - 6.days,
+                        end_date: d - 4.days  )
+        expect(Semester.count).to eql(1)
+      end
+
+      it 'should not allow work with no overlaps' do
+        d = Date.today
+        s1 = Semester.create(name: 'current semester',
+                          start_date: d - 5.days,
+                          end_date: d + 5.days  )
+        s2 = Semester.create(name: 'bad semester',
+                        start_date: d - 20.days,
+                        end_date: d - 10.days  )
+        expect(Semester.count).to eql(2)
+      end
+    end
+
+    context 'start date after end_date' do
+      it 'should not work if start_date is after end date' do
+        d = Date.today
+        s1 = Semester.create(name: 'current semester',
+                          start_date: d + 5.days,
+                          end_date: d - 5.days  )
+        expect(Semester.count).to eql(0)
+      end
+      it 'should  work if start_date is before end date' do
+        d = Date.today
+        s1 = Semester.create(name: 'current semester',
+                          start_date: d - 5.days,
+                          end_date: d + 5.days  )
+        expect(Semester.count).to eql(1)
+      end
+    end
   end
 
   describe '.current_semester' do
