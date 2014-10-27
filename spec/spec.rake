@@ -13,7 +13,13 @@ begin
     end
   end
 
+
+  task :prepare do
+    system 'RACK_ENV=test rake ar:setup'
+  end
+
   desc "Run complete application spec suite"
+  task spec: [:prepare]
   task 'spec' => spec_tasks.map { |f| "spec:#{f}" }
 rescue LoadError
   puts "RSpec is not part of this bundle, skip specs."
