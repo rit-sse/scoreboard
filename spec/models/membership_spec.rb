@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Membership do
+RSpec.describe Membership do
 end

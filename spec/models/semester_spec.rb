@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Semester do
+RSpec.describe Semester do
 
   describe 'custom validations' do
     it 'should not allow overlapping'
