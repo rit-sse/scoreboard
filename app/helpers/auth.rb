@@ -16,4 +16,8 @@ Scoreboard::App.helpers do
   def signed_in?
     not current_user.nil?
   end
+
+  def admin?
+    current_user[:role] == 'admin'
+  end
 end

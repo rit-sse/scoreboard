@@ -29,6 +29,16 @@
           loggedIn.loggedIn();
         }
       }
+    })
+    .state('scoreboard.memberships.authorize', {
+      url: '/approve',
+      templateUrl: '/scoreboard/templates/memberships/approve',
+      controller: 'MembershipsApproveController',
+      resolve: {
+        loggedIn: function(loggedIn) {
+          loggedIn.admin();
+        }
+      }
     });
   }
 })();

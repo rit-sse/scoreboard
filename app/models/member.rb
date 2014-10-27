@@ -10,11 +10,11 @@ class Member < ActiveRecord::Base
   end
 
   def memberships_for(semester)
-    memberships.where(semester_id: semester.id)
+    memberships.where(semester_id: semester.id).approved
   end
 
   def self.high_score(semester)
-    Hash[semester.memberships.group_by { |membership| membership.member }.to_a
+    Hash[semester.memberships.approved.group_by { |membership| membership.member }.to_a
       .sort{|a,b| b[1].count <=> a[1].count}].keys
   end
 

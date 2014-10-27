@@ -4,9 +4,10 @@ Scoreboard::App.controllers :memberships do
   has_scope :memberships, :semester
   has_scope :memberships, :dce
 
-
   get :index, map: '/api/memberships', provides: [:json, :csv] do
-    @memberships = apply_scopes(:memberships, Membership, params).all
+    params["semester"] ||= Semester.current_semester.name
+    logger.info(params)
+    @memberships = apply_scopes(:memberships, Membership, params).approved
     case content_type
     when :json
       render 'memberships/index'
@@ -27,6 +28,11 @@ Scoreboard::App.controllers :memberships do
     end
   end
 
+  get :admin_index, map: '/api/admin/memberships', admin: true, provides: [:json] do
+    @memberships = Semester.current_semester.memberships.needs_approval
+    render 'memberships/index'
+  end
+
   post :create, map: '/api/memberships', authorize: true, provides: [:json] do
     params = JSON.parse(request.body.read, symbolize_names: true)
     Member.create(params[:member]) # incase it doesn't exist
@@ -40,5 +46,16 @@ Scoreboard::App.controllers :memberships do
       [422, {}, { errors: @membership.errors.full_messages }.to_json]
     end
   end
+
+  put :update, map: '/api/memberships/:id', admin: true, provides: [:json] do
+    @membership = Membership.find(params[:id])
+    params = JSON.parse(request.body.read, symbolize_names: true)
+    if @membership.update(params)
+      { notice: 'Membership was successfully updated' }.to_json
+    else
+      [422, {}, { errors: @membership.errors.full_messages }.to_json]
+    end
+  end
+
 
 end
