@@ -13,7 +13,7 @@ gem 'pg', group: 'production'
 gem 'sqlite3'
 
 # Test requirements
-gem 'rspec', :group => 'test'
+gem 'rspec', '~>3.1'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 # Padrino Stable Gem
